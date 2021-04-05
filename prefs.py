@@ -95,9 +95,8 @@ class CommandConfigPreferences(AddonPreferences):
 
         box = layout.box()
 
-        if self.use_smart_select_transform:
-            box.prop(self, "use_smart_select_transform")
-        else:
+        box.prop(self, "use_smart_select_transform")
+        if not self.use_smart_select_transform:
             box.prop(self, "remap_transform_gizmos")
             if self.remap_transform_gizmos:
                 box.prop(self, "swap_e_and_r_keys")
