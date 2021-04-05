@@ -21,16 +21,24 @@ view3d_modes = [
 def register_transform_keys(prefs, keys, km):
     if prefs.use_smart_select_transform:
 
-        # kmi = km.keymap_items.new("wm.tool_set_by_id", "W", "PRESS")
-        # kmi.properties.name = "builtin.transform"
-        # keys.append((km, kmi))
+        if prefs.default_to_pie:
 
-        kmi = km.keymap_items.new(ToggleTransformCursor.bl_idname, "W", "PRESS")
-        keys.append((km, kmi))
+            kmi = km.keymap_items.new("wm.call_menu_pie", "W", "PRESS")
+            kmi.properties.name = VIEW3D_MT_commandconfig_selection_mode_pie.__name__
+            keys.append((km, kmi))
 
-        kmi = km.keymap_items.new("wm.call_menu_pie", "W", "CLICK_DRAG")
-        kmi.properties.name = VIEW3D_MT_commandconfig_selection_mode_pie.__name__
-        keys.append((km, kmi))
+        else:
+
+            # kmi = km.keymap_items.new("wm.tool_set_by_id", "W", "PRESS")
+            # kmi.properties.name = "builtin.transform"
+            # keys.append((km, kmi))
+
+            kmi = km.keymap_items.new(ToggleTransformCursor.bl_idname, "W", "PRESS")
+            keys.append((km, kmi))
+
+            kmi = km.keymap_items.new("wm.call_menu_pie", "W", "CLICK_DRAG")
+            kmi.properties.name = VIEW3D_MT_commandconfig_selection_mode_pie.__name__
+            keys.append((km, kmi))
 
         return
 

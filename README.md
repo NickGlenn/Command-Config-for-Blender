@@ -12,6 +12,7 @@ This add-on manages keymap bindings across multiple view modes instaneously and 
 
 
 - **Use W for Smart Select / Transform** remaps the `W` key to a custom toggle between the universal transform gizmo and the standard selection cursor. Additionally, dragging the mouse while holding the `W` key will open a custom pie menu that displays all selection modes and individual transformation gizmos for quick selection.
+  - **Default to pie menu** changes the `W` key behavior to immediately open the custom pie menu displaying all selection modes and individual transformation gizmos, rather than toggling between the selection cursor and universal transform gizmo.
 - **Use industry standard transform shortcuts** is an alternative mode that remaps keys to match the industry standards of `W`, `E`, and `R`. This option will handle the remapping of that for you across all 3D viewport modes.
   - **Swap E for rotation and R for scale** swaps the `E` and `R` as an alternative to match some other 3D software.
   - **Use S for changing selection mode** changes the `S` key from scale tool (Blender's default) to a selection tool.

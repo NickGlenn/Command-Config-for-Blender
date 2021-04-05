@@ -20,6 +20,13 @@ class CommandConfigPreferences(AddonPreferences):
         update=update_keys,
     )
 
+    default_to_pie: BoolProperty(
+        name="Default to pie menu",
+        description="Defaults the W key to the gizmo / selection tool pie menu without needing to drag the mouse",
+        default=False,
+        update=update_keys,
+    )
+
     remap_transform_gizmos: BoolProperty(
         name="Use industry standard transform shortcuts",
         description="Sets W, E, R to Move, Scale and Rotate transformation gizmos respectively",
@@ -96,7 +103,9 @@ class CommandConfigPreferences(AddonPreferences):
         box = layout.box()
 
         box.prop(self, "use_smart_select_transform")
-        if not self.use_smart_select_transform:
+        if self.use_smart_select_transform:
+            box.prop(self, "default_to_pie")
+        else:
             box.prop(self, "remap_transform_gizmos")
             if self.remap_transform_gizmos:
                 box.prop(self, "swap_e_and_r_keys")
