@@ -1,6 +1,7 @@
 import bpy
 from .selection_pie import VIEW3D_MT_commandconfig_selection_mode_pie
 from .merge_vert_pie import OBJECT_MT_commandconfig_merge_verts
+from .toggle_transform_cursor import ToggleTransformCursor
 
 keys = []
 
@@ -20,8 +21,11 @@ view3d_modes = [
 def register_transform_keys(prefs, keys, km):
     if prefs.use_smart_select_transform:
 
-        kmi = km.keymap_items.new("wm.tool_set_by_id", "W", "PRESS")
-        kmi.properties.name = "builtin.transform"
+        # kmi = km.keymap_items.new("wm.tool_set_by_id", "W", "PRESS")
+        # kmi.properties.name = "builtin.transform"
+        # keys.append((km, kmi))
+
+        kmi = km.keymap_items.new(ToggleTransformCursor.bl_idname, "W", "PRESS")
         keys.append((km, kmi))
 
         kmi = km.keymap_items.new("wm.call_menu_pie", "W", "CLICK_DRAG")
@@ -54,6 +58,9 @@ def register_transform_keys(prefs, keys, km):
 
 
 def register_selection_keys(prefs, keys, km):
+    if prefs.use_smart_select_transform:
+        return
+
     if not prefs.replace_q_key:
         return
 
@@ -135,20 +142,18 @@ def register_selection_arrows(prefs, keys, km, mode):
 
 
 def register_mesh_element_keys(prefs, keys, km):
-    if not prefs.remap_mesh_element_keys:
-        return
+    if prefs.remap_mesh_element_keys:
+        kmi = km.keymap_items.new("wm.call_menu", "ONE", "PRESS", ctrl=True)
+        kmi.properties.name = "VIEW3D_MT_edit_mesh_vertices"
+        keys.append((km, kmi))
 
-    kmi = km.keymap_items.new("wm.call_menu", "ONE", "PRESS", ctrl=True)
-    kmi.properties.name = "VIEW3D_MT_edit_mesh_vertices"
-    keys.append((km, kmi))
+        kmi = km.keymap_items.new("wm.call_menu", "TWO", "PRESS", ctrl=True)
+        kmi.properties.name = "VIEW3D_MT_edit_mesh_edges"
+        keys.append((km, kmi))
 
-    kmi = km.keymap_items.new("wm.call_menu", "TWO", "PRESS", ctrl=True)
-    kmi.properties.name = "VIEW3D_MT_edit_mesh_edges"
-    keys.append((km, kmi))
-
-    kmi = km.keymap_items.new("wm.call_menu", "THREE", "PRESS", ctrl=True)
-    kmi.properties.name = "VIEW3D_MT_edit_mesh_faces"
-    keys.append((km, kmi))
+        kmi = km.keymap_items.new("wm.call_menu", "THREE", "PRESS", ctrl=True)
+        kmi.properties.name = "VIEW3D_MT_edit_mesh_faces"
+        keys.append((km, kmi))
 
     if prefs.merge_verts_pie:
         # merge verts menu

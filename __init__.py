@@ -2,6 +2,8 @@ import bpy
 from . import keymap, icons
 from .prefs import CommandConfigPreferences, get_prefs
 from .selection_pie import VIEW3D_MT_commandconfig_selection_mode_pie
+from .merge_vert_pie import OBJECT_MT_commandconfig_merge_verts
+from .toggle_transform_cursor import ToggleTransformCursor
 
 bl_info = {
     "name": "Command Config",
@@ -18,7 +20,9 @@ bl_info = {
 
 classes = (
     VIEW3D_MT_commandconfig_selection_mode_pie,
+    OBJECT_MT_commandconfig_merge_verts,
     CommandConfigPreferences,
+    ToggleTransformCursor,
 )
 
 
