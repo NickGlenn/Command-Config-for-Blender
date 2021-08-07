@@ -1,6 +1,6 @@
 # Command Configuration
 
-This is a simple addon for Blender >=2.80 that allows quick configuration of some additional keyboard shortcuts.
+This is a simple addon for Blender 2.8+ that allows quick configuration of some additional keyboard shortcuts.
 
 ## Installation
 
@@ -21,3 +21,9 @@ This add-on manages keymap bindings across multiple view modes instaneously and 
 - **Map mesh element menus to CTRL + (1, 2, 3)** binds the Vertex, Edge and Face menus to the `Ctrl + 1`, `Ctrl + 2`, and `Ctrl + 3` keys when in edit mesh mode. This more closely aligns with using the `1`, `2`, and `3` keys for mesh element selection, creating a more natural muscle memory mapping.
 - **Use double click to select linked** will select linked objects and elements when double clicking on an object or element. This is useful for quickly selecting islands of objects instead of having to resort to `L` or `Ctrl + L`.
 - **Use merge vertex pie menu** replaces the default "Merge Vertices" menu (triggered with `M`) with a pie menu, allowing for muscle memory mappings for faster merge operation selection.
+
+# Development
+
+If you wish to contribute to the development of this addon, I've found that the best workflow is to use Jacques Lucke's excellent (though no longer supported) "Blender Development" extension for VS Code. This in addition with the [fake-bpy-module](https://pypi.org/project/fake-bpy-module-2.93/) that can be installed via `pip` allows a much easier and faster development environment than any of the alternatives I've seen.
+
+> If you're working on Windows, be aware that you may have issues with folder permissions when attempting to use the "Build and Start" feature from the "Blender Development" extension. Either change Blender to use your custom installation of `python` or edit the file permissions for Blender's application folder and subfolders to get around these issues.
